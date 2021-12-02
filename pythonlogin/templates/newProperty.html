@@ -1,42 +1,39 @@
-﻿<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>New Property</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-		<link rel="stylesheet" href="all.css">
-	</head>
-	<body>
-        {% extends 'layout.html' %}
-
-        {% block title %}New Property{% endblock %}
-
-        {% block content %} 
-
-		<div>
-
-			{% with messages = get_flashed_messages() %}
-			{% if messages %}
-     			 {% for message in messages %}
-        			 {{ message }}
-      			{% endfor %}
-   			{% endif %}
-		{% endwith %}
-		<br>
-			<h1>New Property Details</h1>
-			
-			<form action="{{ url_for('newProperty') }}" method="post" autocomplete="off" enctype="multipart/form-data">
-				
-				<label for="propertyAddress">Enter the Property Address: </label>
-				<input type="text" name="propertyAddress" placeholder="Property Address" id="propertyAddress" required>
-				<br>
-				<label for="propertyAddressLine2">Enter the Property Address Line 2: </label><input type="text" name="propertyAddressLine2" placeholder="Property Address Line 2" id="propertyAddressLine2">
-				<br>
-				<label for="propertyCity">Enter the Property city: </label><input type="text" name="propertyCity" placeholder="Property City" id="propertyCity" required>
-				<br>
-				<label for="propertyState">Enter the Property State: </label>
-				<select name="propertyState" id="propertyState" required>
-					<option value="AL">Alabama</option>
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>newProperty</title>
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"]  }});</script>
+ 
+  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+</head>
+<body class="body">
+  <div class="class-section">
+    <div class="wrap-2 a"></div>
+    <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nav w-nav"><img src="images/logo.PNG" width="129" alt="" class="image">
+      <div class="nav-container w-container">
+        <a href="#" class="logo w-nav-brand"></a>
+        <nav role="navigation" class="nav-menu w-nav-menu">
+          <a href="#" class="nav-link w-nav-link">Home</a>
+          <a href="#" class="nav-link w-nav-link">About</a>
+          <a href="#" class="nav-link w-nav-link">Contact</a>
+        </nav>
+        <div class="w-nav-button">
+          <div class="w-icon-nav-menu"></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap-2 b"></div>
+  </div>
+  <div class="w-row">
+    <div class="w-col w-col-6">
+      <h1>New Property Details</h1>
+      <div class="w-form">
+        <form id="Property-Form" name="email-form" data-name="Email Form"><label for="Property-Address">Enter the Property Address</label><input type="text" class="text-field w-input" maxlength="256" name="Property-Address" data-name="Property Address" placeholder="Property Address" id="Property-Address" required=""><label for="Property-Address-Line">Enter the Property Address Line 2:</label><input type="text" class="w-input" maxlength="256" name="Property-Address-Line-2" data-name="Property Address Line 2" placeholder="Property Address Line 2" id="Property-Address-Line"><label for="City">Enter the Property City:</label><input type="text" class="w-input" maxlength="256" name="City" data-name="City" placeholder="Property City" id="City" required=""><label for="State">Select Property State:</label><select id="State" name="State" data-name="State" class="w-select">
+          <option value="AL">Alabama</option>
 					<option value="AK">Alaska</option>
 					<option value="AZ">Arizona</option>
 					<option value="AR">Arkansas</option>
@@ -87,86 +84,62 @@
 					<option value="WV">West Virginia</option>
 					<option value="WI">Wisconsin</option>
 					<option value="WY">Wyoming</option>
-				</select>
-				<br>
-				<label for="propertyZipcode">Enter the Property Zip: </label>
-				<select name="propertyZipcode" id="propertyZipcode">
-					<option value="08006">08006</option>
-  					<option value="08008">08008</option>
-				</select>
-				<br>
-				<label for="numOfBedrooms">Enter the number of Bedrooms: </label>
-				<input type="number" name="numOfBedrooms" placeholder="Number Of Bedrooms" id="numOfBedrooms" required>
-				<br>
-				<label for="numOfBathrooms">Enter the number of Bathrooms: </label>
-				<input type="number" name="numOfBathrooms" placeholder="Number Of Bathrooms" id="numOfBathrooms" required>
-				<br>
-				<label for="keyNum">Enter the key number: </label><input type="number" name="keyNum" placeholder ="Key Number" id="keyNum" required>
-				<br>
-				<input type="checkbox" name="pets" id="pets" value="1">
-				<input type="hidden" name="pets" id="pets" value="0">
-				<label for="pets">Are Pets Allowed?</label>
-				<br>
-				<input type="checkbox" name="pool" id="pool" value="1">
-				<input type="hidden" name="pool" id="pool" value="0">
-				<label for="pool">Is there a pool?</label>
-				<br>
-				<input type="checkbox" name="bbq" id="bbq" value="1">
-				<input type="hidden" name="bbq" id="bbq" value="0">
-				<label for="bbq">Is there a BBQ Grill?</label>
-				<br>
-				<input type="checkbox" name="ac" id="ac" value="1">
-				<input type="hidden" name="ac" id="ac" value="0">
-				<label for="ac">Is there air conditioning?</label>
-				<br>
-				<input type="checkbox" name="washerDryer" id="washerDryer" value="1">
-				<input type="hidden" name="washerDryer" id="washerDryer" value="0">
-				<label for="washerDryer">Is there a Washer and Dryer?</label>
-				<br>
-				<label for="numOfParkingSpots">Enter the number of parking spaces: </label> 
-				<input type="number" name="numOfParkingSpots" placeholder ="Number of Parking Spots" id="numOfParkingSpots" >
-				<br>
-				<input type="checkbox" name="outsideShower" id="outsideShower" value="1">
-				<input type="hidden" name="outsideShower" id="outsideShower" value="0">
-				<label for="outsideShower">Is there an outside shower?</label>
-				<br>
-				<label for="wifiName">Enter the wifi name: </label>
-				<input type="text" name="wifiName" placeholder ="Wifi Name" id="wifiName" >
-				<br>
-				<label for="wifiPassword">Enter the wifi password: </label>
-				<input type="text" name="wifiPassword" placeholder ="Wifi Password" id="wifiPassword" >
-				<br>
-				<input type="checkbox" name="beachside" id="beachside" value="1">
-				<input type="hidden" name="beachside" id="beachside" value="0">
-				<label for="beachside">Is this property beachside?</label>
-				<br>
-				<input type="checkbox" name="bayside" id="bayside" value="1">
-				<input type="hidden" name="bayside" id="bayside" value="0">
-				<label for="bayside">Is this property Bayside</label>
-				<br>
-				<input type="checkbox" name="oceanFront" id="oceanFront" value="1">
-				<input type="hidden" name="oceanFront" id="oceanFront" value="0">
-				<label for="oceanfront">Is this property Oceanfront?</label>
-				<br>
-				<input type="checkbox" name="bayFront" id="bayFront" value="1">
-				<input type="hidden" name="bayFront" id="bayFront" value="0">
-				<label for="bayfront">Is this property Bayfront?</label>
-				<br>
-				<label for="commissionPercentage">Enter the commission percentage: </label>
-				<input type="number" name="commissionPercentage" placeholder ="Commission Percentage" id="commissionPercentage" required >
- 				<br>
- 				<label for="ownerID">Enter the owner's ID </label>
-				 <input type="number" name ="ownerID" placeholder ="Owner ID" id="ownerID" required >
-				<br>
-				
-			
-				<label for="propertyImage">Upload an Image of the property to display</label>
-				<input type="file" name = "propertyImage" id = "propertyImage">
-					
-				 <br>
-				<input type="submit" value="Create">
-			</form>
-		</div>
-        {% endblock %}
-	</body>
+          </select><label for="Zip">Enter Property Zip</label><input type="number" class="w-input" maxlength="256" name="Zip" data-name="Zip" placeholder="Property Zip" id="Zip" required=""><label for="Bedrooms">Enter Number of Bedrooms</label><input type="number" class="w-input" maxlength="256" name="Bedrooms" data-name="Bedrooms" placeholder="Number of Bedrooms" id="Bedrooms" required=""><label for="Bathrooms">Enter Number of Bathrooms</label><input type="number" class="w-input" maxlength="256" name="Bathrooms" data-name="Bathrooms" placeholder="Number of Bathrooms" id="Bathrooms" required=""><label for="Key-Number">Enter the Key Number</label><input type="number" class="w-input" maxlength="256" name="Key-Number" data-name="Key Number" placeholder="Key Number" id="Key-Number" required=""><label for="Number-of-Parking-Spots">Enter the Number of Parking Spots</label><input type="number" class="w-input" maxlength="256" name="Number-of-Parking-Spots" data-name="Number of Parking Spots" placeholder="Number of Parking Spots" id="Number-of-Parking-Spots" required=""><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button"></form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+      </div>
+    </div>
+    <div class="w-col w-col-6">
+      <div class="form-block w-form">
+        <form id="Property-Form" name="email-form" data-name="Email Form"><label for="WiFi-Name">Enter the WiFi Name</label><input type="text" class="text-field w-input" maxlength="256" name="WiFi-Name" data-name="WiFi Name" placeholder="WiFi Name" id="WiFi-Name"><label for="WiFi-Password">Enter the WiFi Password</label><input type="password" class="w-input" maxlength="256" name="WiFi-Password" data-name="WiFi Password" placeholder="WiFi Password" id="WiFi-Password" required=""><label for="Commission-Percentage">Enter the Commission Percentage</label><input type="number" class="w-input" maxlength="256" name="Commission-Percentage" data-name="Commission Percentage" placeholder="Commission Percentage" id="Commission-Percentage" required=""><label for="Owner-ID">Owner ID</label><input type="number" class="w-input" maxlength="256" name="Owner-ID" data-name="Owner ID" placeholder="Owner ID" id="Owner-ID" required=""><label for="email-4">Upload an Image of the Property to Display</label>
+          <div class="w-file-upload">
+            <div class="w-file-upload-default"><input type="file" id="Property-Display" name="Property-Display" data-name="Property Display" class="w-file-upload-input"><label for="Property-Display" class="w-file-upload-label">
+                <div class="w-icon-file-upload-icon"></div>
+                <div class="w-inline-block">Upload File</div>
+              </label>
+              <div class="text-block w-file-upload-info">Max file size 10MB.</div>
+            </div>
+            <div class="w-file-upload-uploading w-hidden">
+              <div class="w-file-upload-uploading-btn"><svg class="w-icon-file-upload-uploading" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30">
+                  <path fill="currentColor" opacity=".2" d="M15 30a15 15 0 1 1 0-30 15 15 0 0 1 0 30zm0-3a12 12 0 1 0 0-24 12 12 0 0 0 0 24z"></path>
+                  <path fill="currentColor" opacity=".75" d="M0 15A15 15 0 0 1 15 0v3A12 12 0 0 0 3 15H0z"></path>
+                    <animatetransform attributename="transform" attributetype="XML" dur="0.6s" from="0 15 15" repeatcount="indefinite" to="360 15 15" type="rotate"></animatetransform>
+                </svg>
+                <div class="w-inline-block">Uploading...</div>
+              </div>
+            </div>
+            <div class="w-file-upload-success w-hidden">
+              <div class="w-file-upload-file">
+                <div class="w-file-upload-file-name">fileuploaded.jpg</div>
+                <div class="w-file-remove-link">
+                  <div class="w-icon-file-upload-remove"></div>
+                </div>
+              </div>
+            </div>
+            <div class="w-file-upload-error w-hidden">
+              <div class="w-file-upload-error-msg" data-w-size-error="Upload failed. Max size for files is 10 MB." data-w-type-error="Upload failed. Invalid file type." data-w-generic-error="Upload failed. Something went wrong. Please retry.">Upload failed. Max size for files is 10 MB.</div>
+            </div>
+          </div><label class="w-checkbox"><input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" class="w-checkbox-input"><span class="w-form-label" for="checkbox">Are Pets Allowed?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is there a pool?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is there air conditioning?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is there a Washer and Dryer?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is there an outside shower?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is this property beachside?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is this property Bayside?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is this property Oceanfront?</span></label><label class="w-checkbox"><input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2" class="w-checkbox-input"><span class="w-form-label" for="checkbox-2">Is this property BayFront?</span></label>
+        </form>
+        <div class="w-form-done">
+          <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+          <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-embed">
+    <style>
+.xxx { background: rgba(0,0,0,0.05); }
+</style>
+  </div>
+  
+  
+</body>
 </html>
